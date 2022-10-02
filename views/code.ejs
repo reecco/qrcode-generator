@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR code</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="shortcut icon" href="/images/qr-code-scan-96.png" type="image/x-icon">
+</head>
+<body>
+    <%- include('./partials/navbar'); -%>
+
+    <section class="qrcode-generated">
+        <% if (code) { %>
+            <h1>QR Code Generated</h1>
+            <img src="<%= code %>" alt="QR Code" title="<%= content %>">
+            <p><%= content %></p>
+            <form action="/download" method="post">
+                <input type="hidden" value="<%= content %>" name="content">
+                <input type="hidden" value="<%= code %>" name="code">
+                <button class="btn btn-download">Download</button>
+            </form>
+            <a href="/">Create a new QR Code</a>
+        <% } else { %>
+            <h1>QR code not found</h1>
+        <% } %>
+    </section>
+
+    <%- include('./partials/footer'); -%>
+</body>
+</html>
